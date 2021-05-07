@@ -30,10 +30,16 @@ public class IdiomaServicio {
     }
 
     public Idioma actualizar(Idioma d) {
+
         Optional<Idioma> instanciaBD = repositorio.findById(d.getId());
-        if (instanciaBD.isPresent()) {
+
+        // lo que hago aca es buscar si el dominio que le paso existe en la db, si es
+        // asi el id por lo tanto ya existe
+        if (!instanciaBD.isPresent()) {
             throw new RuntimeException("El id no existe");
         }
+
+        // incluir logica de negocio
 
         return repositorio.save(d);
     }
