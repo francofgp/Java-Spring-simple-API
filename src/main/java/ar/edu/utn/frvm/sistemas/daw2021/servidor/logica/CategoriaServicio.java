@@ -1,7 +1,7 @@
 package ar.edu.utn.frvm.sistemas.daw2021.servidor.logica;
 
-import ar.edu.utn.frvm.sistemas.daw2021.servidor.modelo.Idioma;
-import ar.edu.utn.frvm.sistemas.daw2021.servidor.persistencia.IdiomaRepositorio;
+import ar.edu.utn.frvm.sistemas.daw2021.servidor.modelo.Categoria;
+import ar.edu.utn.frvm.sistemas.daw2021.servidor.persistencia.CategoriaRepositorio;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,33 +13,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class IdiomaServicio {
+public class CategoriaServicio {
     @Autowired
-    private IdiomaRepositorio repositorio;
+    private CategoriaRepositorio repositorio;
 
-    public Idioma guardar(Idioma d) {
+    public Categoria guardar(Categoria d) {
         return repositorio.save(d);
     }
 
-    public Iterable<Idioma> listarTodos() {
+    public Iterable<Categoria> listarTodos() {
         return repositorio.findAll();
     }
 
-    public Optional<Idioma> listarUno(Long id) {
+    public Optional<Categoria> listarUno(Long id) {
         return repositorio.findById(id);
     }
 
-    public Idioma actualizar(Idioma d) {
+    public Categoria actualizar(Categoria d) {
 
-        Optional<Idioma> instanciaBD = repositorio.findById(d.getId());
+        Optional<Categoria> instanciaBD = repositorio.findById(d.getId());
+
         if (!instanciaBD.isPresent()) {
             throw new RuntimeException("El id no existe");
         }
+
         return repositorio.save(d);
     }
 
-    public Idioma eliminar(Long id) {
-        Optional<Idioma> instanciaBD = repositorio.findById(id);
+    public Categoria eliminar(Long id) {
+        Optional<Categoria> instanciaBD = repositorio.findById(id);
         if (!instanciaBD.isPresent()) {
             throw new RuntimeException("El id no existe:" + id);
         }

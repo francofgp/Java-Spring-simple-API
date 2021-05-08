@@ -1,6 +1,7 @@
 package ar.edu.utn.frvm.sistemas.daw2021.servidor.modelo;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,8 +11,12 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import lombok.Data;
+
 import lombok.NoArgsConstructor;
 
+@Data
+@Entity
+@NoArgsConstructor
 public class Palabra {
 
     @Id
@@ -25,13 +30,16 @@ public class Palabra {
     private Date fechaModificacion;
     private String traduccion;
 
-    private Idioma idioma;
     private int cantidadDeRepasos;
     private int cantidadDeRepasosHastaProximoNivel;
     private int nivel;
     private Date fechaHastaDescenderNivel;
 
+
+    @ManyToOne
+    private Idioma idioma;
+
     @ManyToMany
-    private Texto texto;
+    private List<Texto> texto;
 
 }

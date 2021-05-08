@@ -12,40 +12,34 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ar.edu.utn.frvm.sistemas.daw2021.servidor.logica.DominioServicio;
-import ar.edu.utn.frvm.sistemas.daw2021.servidor.modelo.Dominio;
+import ar.edu.utn.frvm.sistemas.daw2021.servidor.logica.TextoServicio;
+import ar.edu.utn.frvm.sistemas.daw2021.servidor.modelo.Texto;
 
 @RestController
-@RequestMapping("/dominios") /* MAPEO de URL */
-public class DominioControlador {
-
+@RequestMapping("/textos") /* MAPEO de URL */
+public class TextoControlador {
     @Autowired
-    private DominioServicio servicio;
+    private TextoServicio servicio;
 
-    // GET Listar Todos
     @GetMapping
-    public Iterable<Dominio> listarTodos() {
+    public Iterable<Texto> listarTodos() {
         return servicio.listarTodos();
     }
 
     @GetMapping("/{id}")
-    public Optional<Dominio> listarUno(@PathVariable(name = "identificador") Long id) {
+    public Optional<Texto> listarUno(@PathVariable Long id) {
         return servicio.listarUno(id);
 
     }
 
-    // GET devuelve 1 dominio
-    // GET filtros
-    // Get filstros y paginacion
-    // POST crear
     @PostMapping()
-    public Dominio guardar(@RequestBody Dominio d) {
+    public Texto guardar(@RequestBody Texto d) {
         return servicio.guardar(d);
     }
 
-    // PUT crear
     @PutMapping("/{id}")
-    public Dominio actualizar(@PathVariable Long id, @RequestBody Dominio d) {
+    public Texto actualizar(@PathVariable Long id, @RequestBody Texto d) {
+ 
         if (d.getId() != id) {
             throw new RuntimeException("El id no coincide");
         }
@@ -54,8 +48,8 @@ public class DominioControlador {
 
     // DELETE eliminar
     @DeleteMapping("/{id}")
-    public Dominio eliminar(@PathVariable Long id) {
+    public Texto eliminar(@PathVariable Long id) {
         return servicio.eliminar(id);
-
     }
+
 }

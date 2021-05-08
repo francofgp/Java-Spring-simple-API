@@ -16,6 +16,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor // contructor vacio
 public class Texto {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;

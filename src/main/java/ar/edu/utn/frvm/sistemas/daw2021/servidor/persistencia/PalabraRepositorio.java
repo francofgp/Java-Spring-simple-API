@@ -2,11 +2,12 @@ package ar.edu.utn.frvm.sistemas.daw2021.servidor.persistencia;
 
 import org.springframework.stereotype.Repository;
 
-import ar.edu.utn.frvm.sistemas.daw2021.servidor.modelo.Dominio;
+import ar.edu.utn.frvm.sistemas.daw2021.servidor.modelo.Palabra;
 
 import org.springframework.data.repository.CrudRepository;
 
+
 @Repository
-public interface DominioRepositorio extends CrudRepository<Dominio, Long> {
+public interface PalabraRepositorio extends CrudRepository<Palabra, Long> {
 
 }

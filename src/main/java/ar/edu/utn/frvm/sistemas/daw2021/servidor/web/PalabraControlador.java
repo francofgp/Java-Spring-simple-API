@@ -12,41 +12,43 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ar.edu.utn.frvm.sistemas.daw2021.servidor.logica.IdiomaServicio;
-import ar.edu.utn.frvm.sistemas.daw2021.servidor.modelo.Idioma;
+import ar.edu.utn.frvm.sistemas.daw2021.servidor.logica.PalabraServicio;
+import ar.edu.utn.frvm.sistemas.daw2021.servidor.modelo.Palabra;
 
 @RestController
-@RequestMapping("/idiomas") /* MAPEO de URL */
-public class IdiomaControlador {
+@RequestMapping("/palabras") /* MAPEO de URL */
+public class PalabraControlador {
     @Autowired
-    private IdiomaServicio servicio;
+    private PalabraServicio servicio;
 
     @GetMapping
-    public Iterable<Idioma> listarTodos() {
+    public Iterable<Palabra> listarTodos() {
         return servicio.listarTodos();
     }
 
     @GetMapping("/{id}")
-    public Optional<Idioma> listarUno(@PathVariable(name = "identificador") Long id) {
+    public Optional<Palabra> listarUno(@PathVariable Long id) {
         return servicio.listarUno(id);
 
     }
 
     @PostMapping()
-    public Idioma guardar(@RequestBody Idioma d) {
+    public Palabra guardar(@RequestBody Palabra d) {
         return servicio.guardar(d);
     }
 
     @PutMapping("/{id}")
-    public Idioma actualizar(@PathVariable Long id, @RequestBody Idioma d) {
+    public Palabra actualizar(@PathVariable Long id, @RequestBody Palabra d) {
+ 
         if (d.getId() != id) {
             throw new RuntimeException("El id no coincide");
         }
         return servicio.actualizar(d);
     }
 
+    // DELETE eliminar
     @DeleteMapping("/{id}")
-    public Idioma eliminar(@PathVariable Long id) {
+    public Palabra eliminar(@PathVariable Long id) {
         return servicio.eliminar(id);
     }
 
