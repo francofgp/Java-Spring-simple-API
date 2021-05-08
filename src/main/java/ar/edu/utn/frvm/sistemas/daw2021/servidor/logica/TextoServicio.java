@@ -45,8 +45,11 @@ public class TextoServicio {
         }
 
         d.setFechaCreacion(instanciaBD.get().getFechaCreacion());
-        d.setFechaModificacion(instanciaBD.get().getFechaModificacion());
+        
 
+        if (d.getFechaModificacion() == null){
+            d.setFechaModificacion(instanciaBD.get().getFechaModificacion());
+        }
         if (d.getCategoria() == null) {
             // Long categoria = d.getCategoria();
 

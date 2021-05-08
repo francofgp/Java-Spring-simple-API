@@ -27,7 +27,7 @@ public class IdiomaControlador {
     }
 
     @GetMapping("/{id}")
-    public Optional<Idioma> listarUno(@PathVariable(name = "identificador") Long id) {
+    public Optional<Idioma> listarUno(@PathVariable Long id) {
         return servicio.listarUno(id);
 
     }

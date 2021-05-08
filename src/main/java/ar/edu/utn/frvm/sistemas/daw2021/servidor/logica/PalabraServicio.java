@@ -44,7 +44,9 @@ public class PalabraServicio {
 
         d.setFechaCreacion(instanciaBD.get().getFechaCreacion());
         d.setFechaModificacion(instanciaBD.get().getFechaModificacion());
-        d.setPalabra(instanciaBD.get().getPalabra());
+        if(d.getPalabra() == null){
+            d.setPalabra(instanciaBD.get().getPalabra());
+        };
 
         if (d.getTraduccion() == null) {
             d.setTraduccion(instanciaBD.get().getTraduccion());
