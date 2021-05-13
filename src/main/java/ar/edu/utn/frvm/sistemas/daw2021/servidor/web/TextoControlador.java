@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ar.edu.utn.frvm.sistemas.daw2021.servidor.logica.TextoServicio;
@@ -32,6 +33,12 @@ public class TextoControlador {
 
     }
 
+    @GetMapping(params = { "nombre", "categoria" })
+    public Iterable<Texto> listarFiltradoPorNombreYCategoria(@RequestParam String nombre,
+            @RequestParam(value = "categoria") String c) {
+        return servicio.findByNombreContainingIgnoreCaseAndCategoria_NombreContainingIgnoreCase(nombre, c);
+    }
+
     @PostMapping()
     public Texto guardar(@RequestBody Texto d) {
         return servicio.guardar(d);
@@ -39,7 +46,7 @@ public class TextoControlador {
 
     @PutMapping("/{id}")
     public Texto actualizar(@PathVariable Long id, @RequestBody Texto d) {
- 
+
         if (d.getId() != id) {
             throw new RuntimeException("El id no coincide");
         }

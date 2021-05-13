@@ -9,4 +9,7 @@ import org.springframework.data.repository.CrudRepository;
 @Repository
 public interface TextoRepositorio extends CrudRepository<Texto, Long> {
 
+    Iterable<Texto> findByNombreContainingIgnoreCaseAndCategoria_NombreContainingIgnoreCase(String nombre,
+            String categoria);
+
 }

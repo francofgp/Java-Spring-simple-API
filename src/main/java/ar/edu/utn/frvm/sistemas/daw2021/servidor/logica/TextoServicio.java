@@ -45,9 +45,8 @@ public class TextoServicio {
         }
 
         d.setFechaCreacion(instanciaBD.get().getFechaCreacion());
-        
 
-        if (d.getFechaModificacion() == null){
+        if (d.getFechaModificacion() == null) {
             d.setFechaModificacion(instanciaBD.get().getFechaModificacion());
         }
         if (d.getCategoria() == null) {
@@ -79,6 +78,11 @@ public class TextoServicio {
         }
         repositorio.deleteById(id);
         return instanciaBD.get();
+    }
+
+    public Iterable<Texto> findByNombreContainingIgnoreCaseAndCategoria_NombreContainingIgnoreCase(String nombre,
+            String categoria) {
+        return repositorio.findByNombreContainingIgnoreCaseAndCategoria_NombreContainingIgnoreCase(nombre, categoria);
     }
 
 }

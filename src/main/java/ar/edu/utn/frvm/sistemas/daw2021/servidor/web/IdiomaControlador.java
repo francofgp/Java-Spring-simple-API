@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ar.edu.utn.frvm.sistemas.daw2021.servidor.logica.IdiomaServicio;
@@ -24,6 +25,11 @@ public class IdiomaControlador {
     @GetMapping
     public Iterable<Idioma> listarTodos() {
         return servicio.listarTodos();
+    }
+
+    @GetMapping(params = { "nombre" })
+    public Iterable<Idioma> listarFiltradoPorNombre(@RequestParam String nombre) {
+        return servicio.listarFiltradoPorNombre(nombre);
     }
 
     @GetMapping("/{id}")

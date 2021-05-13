@@ -47,4 +47,8 @@ public class IdiomaServicio {
         return instanciaBD.get();
     }
 
+    public Iterable<Idioma> listarFiltradoPorNombre(String nombre) {
+        return repositorio.findByNombreContainingIgnoreCase(nombre);
+    }
+
 }
