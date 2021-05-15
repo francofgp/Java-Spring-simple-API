@@ -11,6 +11,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Date;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Calendar;
+
 import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,9 +26,15 @@ public class TextoServicio {
     private TextoRepositorio repositorio;
 
     public Texto guardar(Texto d) {
-        Date date = new Date();
+
+        Date date = Calendar.getInstance().getTime();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-M-dd");
+        String strDate = dateFormat.format(date);
+        //System.out.println("Converted String: " + strDate);
+
+        //Date date = new Date();
         d.setFechaCreacion(date);
-        d.setFechaModificacion(date);
+        d.setFechaModificacion(strDate);
 
         return repositorio.save(d);
     }
@@ -80,9 +91,11 @@ public class TextoServicio {
         return instanciaBD.get();
     }
 
-    public Iterable<Texto> findByNombreContainingIgnoreCaseAndCategoria_NombreContainingIgnoreCase(String nombre,
-            String categoria) {
-        return repositorio.findByNombreContainingIgnoreCaseAndCategoria_NombreContainingIgnoreCase(nombre, categoria);
+    public Iterable<Texto> findByNombreContainingIgnoreCaseAndFechaModificacionContainingAndCategoria_NombreContainingIgnoreCase(
+            String nombre,String fecha_modificacion, String c) {
+        return repositorio
+                .findByNombreContainingIgnoreCaseAndFechaModificacionContainingAndCategoria_NombreContainingIgnoreCase(
+                        nombre, fecha_modificacion, c);
     }
 
 }

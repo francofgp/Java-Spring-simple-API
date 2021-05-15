@@ -1,6 +1,7 @@
 package ar.edu.utn.frvm.sistemas.daw2021.servidor.web;
 
 import java.util.Optional;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -33,10 +34,9 @@ public class TextoControlador {
 
     }
 
-    @GetMapping(params = { "nombre", "categoria" })
-    public Iterable<Texto> listarFiltradoPorNombreYCategoria(@RequestParam String nombre,
-            @RequestParam(value = "categoria") String c) {
-        return servicio.findByNombreContainingIgnoreCaseAndCategoria_NombreContainingIgnoreCase(nombre, c);
+    @GetMapping(params = { "nombre", "categoria","fecha_modificacion"})
+    public Iterable<Texto> listarFiltradoPorNombreCategoriayFechaModificacion(@RequestParam String nombre,@RequestParam(value = "categoria") String c,@RequestParam("fecha_modificacion") String fecha_modificacion) {
+        return servicio.findByNombreContainingIgnoreCaseAndFechaModificacionContainingAndCategoria_NombreContainingIgnoreCase(nombre, fecha_modificacion, c);
     }
 
     @PostMapping()

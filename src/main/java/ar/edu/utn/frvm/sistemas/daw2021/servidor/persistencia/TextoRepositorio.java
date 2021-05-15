@@ -6,10 +6,12 @@ import ar.edu.utn.frvm.sistemas.daw2021.servidor.modelo.Texto;
 
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.Date;
+
 @Repository
 public interface TextoRepositorio extends CrudRepository<Texto, Long> {
 
-    Iterable<Texto> findByNombreContainingIgnoreCaseAndCategoria_NombreContainingIgnoreCase(String nombre,
-            String categoria);
+    Iterable<Texto> findByNombreContainingIgnoreCaseAndFechaModificacionContainingAndCategoria_NombreContainingIgnoreCase(String nombre,
+    String fecha_modificacion,String categoria);
 
 }

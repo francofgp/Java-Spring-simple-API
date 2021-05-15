@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
+
 //el data me da metodos como get, setter, tostring
 @Data
 @Entity
@@ -22,8 +24,8 @@ public class Texto {
     private Long id;
     private String nombre;
 
-    private Date fechaCreacion;
-    private Date fechaModificacion;
+    private  Date fechaCreacion;
+    private String fechaModificacion;
 
     @ManyToOne
     private Categoria categoria;
