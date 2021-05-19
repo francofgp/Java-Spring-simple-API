@@ -18,6 +18,10 @@ import java.util.Calendar;
 
 import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -30,9 +34,9 @@ public class TextoServicio {
         Date date = Calendar.getInstance().getTime();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-M-dd");
         String strDate = dateFormat.format(date);
-        //System.out.println("Converted String: " + strDate);
+        // System.out.println("Converted String: " + strDate);
 
-        //Date date = new Date();
+        // Date date = new Date();
         d.setFechaCreacion(date);
         d.setFechaModificacion(strDate);
 
@@ -40,6 +44,27 @@ public class TextoServicio {
     }
 
     public Iterable<Texto> listarTodos() {
+
+        // Pageable
+        // Sort
+        // return repositorio.findAll(PageRequest.of(0, 5, Sort.by(Direction.DESC,
+        // "nombre")));
+        // return repositorio.findAll();
+        return repositorio.findAll();
+    }
+
+    public Iterable<Texto> listarTodos(Pageable pagina) {
+
+        return repositorio.findAll(pagina);
+    }
+
+    public Iterable<Texto> listarTodosPaginado() {
+
+        // Pageable
+        // Sort
+        // return repositorio.findAll(PageRequest.of(0, 5, Sort.by(Direction.DESC,
+        // "nombre")));
+        // return repositorio.findAll();
         return repositorio.findAll();
     }
 
@@ -92,10 +117,15 @@ public class TextoServicio {
     }
 
     public Iterable<Texto> findByNombreContainingIgnoreCaseAndFechaModificacionContainingAndCategoria_NombreContainingIgnoreCase(
-            String nombre,String fecha_modificacion, String c) {
+            String nombre, String fecha_modificacion, String c) {
         return repositorio
                 .findByNombreContainingIgnoreCaseAndFechaModificacionContainingAndCategoria_NombreContainingIgnoreCase(
                         nombre, fecha_modificacion, c);
     }
+
+    /*
+     * public Iterable<Texto> findByNombrePaginado(String nombre, Pageable pagina) {
+     * return repositorio.findByNombreContainingIgnoreCase(nombre, pagina); }
+     */
 
 }

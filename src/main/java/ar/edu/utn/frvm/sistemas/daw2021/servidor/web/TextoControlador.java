@@ -4,6 +4,7 @@ import java.util.Optional;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,16 +29,40 @@ public class TextoControlador {
         return servicio.listarTodos();
     }
 
+    @GetMapping(params = { "sort" })
+    public Iterable<Texto> listarTodosPaginados(Pageable pagina) {
+        return servicio.listarTodos(pagina);
+    }
+
     @GetMapping("/{id}")
     public Optional<Texto> listarUno(@PathVariable Long id) {
         return servicio.listarUno(id);
 
     }
 
-    @GetMapping(params = { "nombre", "categoria","fecha_modificacion"})
-    public Iterable<Texto> listarFiltradoPorNombreCategoriayFechaModificacion(@RequestParam String nombre,@RequestParam(value = "categoria") String c,@RequestParam("fecha_modificacion") String fecha_modificacion) {
-        return servicio.findByNombreContainingIgnoreCaseAndFechaModificacionContainingAndCategoria_NombreContainingIgnoreCase(nombre, fecha_modificacion, c);
+    @GetMapping(params = { "nombre", "categoria", "fecha_modificacion" })
+    public Iterable<Texto> listarFiltradoPorNombreCategoriayFechaModificacion(@RequestParam String nombre,
+            @RequestParam(value = "categoria") String c,
+            @RequestParam("fecha_modificacion") String fecha_modificacion) {
+        return servicio
+                .findByNombreContainingIgnoreCaseAndFechaModificacionContainingAndCategoria_NombreContainingIgnoreCase(
+                        nombre, fecha_modificacion, c);
     }
+
+    @GetMapping(params = { "nombre", "categoria", "fecha_modificacion", "page" })
+    public Iterable<Texto> listarFiltradoPorNombreCategoriaFechaModificacionPaginado(@RequestParam String nombre,
+            @RequestParam(value = "categoria") String c,
+            @RequestParam("fecha_modificacion") String fecha_modificacion) {
+        return servicio
+                .findByNombreContainingIgnoreCaseAndFechaModificacionContainingAndCategoria_NombreContainingIgnoreCase(
+                        nombre, fecha_modificacion, c);
+    }
+
+    /*
+     * @GetMapping(params = { "nombre", "page" }) public Iterable<Texto>
+     * listarFiltradoPorNombrePaginado(@RequestParam String nombre, @RequestParam
+     * Pageable pagina) { return servicio.findByNombrePaginado(nombre, pagina); }
+     */
 
     @PostMapping()
     public Texto guardar(@RequestBody Texto d) {
