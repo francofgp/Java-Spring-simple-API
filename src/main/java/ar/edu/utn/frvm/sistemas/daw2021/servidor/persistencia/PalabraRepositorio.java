@@ -6,7 +6,6 @@ import ar.edu.utn.frvm.sistemas.daw2021.servidor.modelo.Palabra;
 
 import org.springframework.data.repository.CrudRepository;
 
-
 @Repository
 public interface PalabraRepositorio extends CrudRepository<Palabra, Long> {
 

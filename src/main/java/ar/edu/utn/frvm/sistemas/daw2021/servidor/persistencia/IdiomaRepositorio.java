@@ -10,12 +10,9 @@ import org.springframework.data.repository.CrudRepository;
 @Repository
 public interface IdiomaRepositorio extends CrudRepository<Idioma, Long> {
 
-
     public Iterable<Idioma> findByNombreContainingIgnoreCase(String nombre);
 
+    // @Query("")
+    // public Idioma findByNombre(String nombreIdioma);
 
-    //@Query("")
-    //public Idioma findByNombre(String nombreIdioma);
-    
-    
 }

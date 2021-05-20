@@ -18,6 +18,7 @@ import java.util.Calendar;
 
 import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -51,11 +52,6 @@ public class TextoServicio {
         // "nombre")));
         // return repositorio.findAll();
         return repositorio.findAll();
-    }
-
-    public Iterable<Texto> listarTodos(Pageable pagina) {
-
-        return repositorio.findAll(pagina);
     }
 
     public Iterable<Texto> listarTodosPaginado() {
@@ -123,9 +119,17 @@ public class TextoServicio {
                         nombre, fecha_modificacion, c);
     }
 
-    /*
-     * public Iterable<Texto> findByNombrePaginado(String nombre, Pageable pagina) {
-     * return repositorio.findByNombreContainingIgnoreCase(nombre, pagina); }
-     */
+    public Iterable<Texto> listarFiltradoPorNombre(String nombre) {
+
+        return repositorio.findByNombreContainingIgnoreCase(nombre);
+    }
+
+    public Page<Texto> findByNombrePaginado(String nombre, Pageable page) {
+        return repositorio.findByNombreContainingIgnoreCase(nombre, page);
+    }
+
+    public Iterable<Texto> listarTodos(Pageable page) {
+        return repositorio.findAll(page);
+    }
 
 }

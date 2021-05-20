@@ -11,20 +11,18 @@ import javax.persistence.ManyToOne;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
-
 //el data me da metodos como get, setter, tostring
 @Data
 @Entity
 @NoArgsConstructor // contructor vacio
 public class Texto {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String nombre;
 
-    private  Date fechaCreacion;
+    private Date fechaCreacion;
     private String fechaModificacion;
 
     @ManyToOne

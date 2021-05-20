@@ -2,6 +2,7 @@ package ar.edu.utn.frvm.sistemas.daw2021.servidor;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 public class PrimerapruebaApplication {

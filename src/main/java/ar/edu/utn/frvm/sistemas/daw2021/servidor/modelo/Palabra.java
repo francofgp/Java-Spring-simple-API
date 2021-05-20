@@ -35,7 +35,6 @@ public class Palabra {
     private int nivel;
     private Date fechaHastaDescenderNivel;
 
-
     @ManyToOne
     private Idioma idioma;
 

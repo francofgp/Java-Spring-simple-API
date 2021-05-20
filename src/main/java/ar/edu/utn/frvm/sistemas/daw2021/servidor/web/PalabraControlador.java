@@ -39,7 +39,7 @@ public class PalabraControlador {
 
     @PutMapping("/{id}")
     public Palabra actualizar(@PathVariable Long id, @RequestBody Palabra d) {
- 
+
         if (d.getId() != id) {
             throw new RuntimeException("El id no coincide");
         }
