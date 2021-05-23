@@ -27,7 +27,7 @@ public class Palabra {
     private Date fechaCreacion;
     private Date fechaUltimoRepaso;
     private Date fechaSiguienteRepaso;
-    private Date fechaModificacion;
+    private String fechaModificacion;
     private String traduccion;
 
     private int cantidadDeRepasos;

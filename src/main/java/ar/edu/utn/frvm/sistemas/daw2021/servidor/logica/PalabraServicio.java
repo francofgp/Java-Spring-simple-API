@@ -9,6 +9,15 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Date;
 
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Calendar;
+
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,9 +28,16 @@ public class PalabraServicio {
     private PalabraRepositorio repositorio;
 
     public Palabra guardar(Palabra d) {
-        Date date = new Date();
+
+        Date date = Calendar.getInstance().getTime();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-M-dd");
+        String strDate = dateFormat.format(date);
+
+
+        //Date date = new Date();
         d.setFechaCreacion(date);
-        d.setFechaModificacion(date);
+        
+        d.setFechaModificacion(strDate);
 
         return repositorio.save(d);
     }
@@ -43,7 +59,12 @@ public class PalabraServicio {
         }
 
         d.setFechaCreacion(instanciaBD.get().getFechaCreacion());
-        d.setFechaModificacion(instanciaBD.get().getFechaModificacion());
+
+        Date date = Calendar.getInstance().getTime();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-M-dd");
+        String strDate = dateFormat.format(date);
+
+        d.setFechaModificacion(strDate);
         if (d.getPalabra() == null) {
             d.setPalabra(instanciaBD.get().getPalabra());
         }
@@ -84,6 +105,24 @@ public class PalabraServicio {
         }
         repositorio.deleteById(id);
         return instanciaBD.get();
+    }
+
+    public Iterable<Palabra> listarFiltradoPorNombre(String palabra) {
+
+        return repositorio.findByPalabraContainingIgnoreCase(palabra);
+    }
+
+    public Iterable<Palabra> listarTodos(Pageable page) {
+        return repositorio.findAll(page);
+    }
+
+    public Page<Palabra> findByNombrePaginado(String palabra, Pageable page) {
+        return repositorio.findByPalabraContainingIgnoreCase(palabra, page);
+    }
+
+    public Iterable<Palabra> findByPalabraContainingIgnoreCaseAndFechaModificacionContaining(String palabra,
+            String fecha_modificacion) {
+        return repositorio.findByPalabraContainingIgnoreCaseAndFechaModificacionContaining(palabra,fecha_modificacion);
     }
 
 }

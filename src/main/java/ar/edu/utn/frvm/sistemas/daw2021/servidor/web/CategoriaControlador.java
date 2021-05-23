@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import ar.edu.utn.frvm.sistemas.daw2021.servidor.logica.CategoriaServicio;
 import ar.edu.utn.frvm.sistemas.daw2021.servidor.modelo.Categoria;
@@ -32,16 +36,11 @@ public class CategoriaControlador {
 
     }
 
-    // GET devuelve 1 dominio
-    // GET filtros
-    // Get filstros y paginacion
-    // POST crear
     @PostMapping()
     public Categoria guardar(@RequestBody Categoria d) {
         return servicio.guardar(d);
     }
 
-    // PUT crear
     @PutMapping("/{id}")
     public Categoria actualizar(@PathVariable Long id, @RequestBody Categoria d) {
         System.out.println(("getID:" + (d.getId())));
@@ -52,10 +51,29 @@ public class CategoriaControlador {
         return servicio.actualizar(d);
     }
 
-    // DELETE eliminar
     @DeleteMapping("/{id}")
     public Categoria eliminar(@PathVariable Long id) {
         return servicio.eliminar(id);
+    }
+
+    // Filtros
+
+    @GetMapping(params = { "nombre" })
+    public Iterable<Categoria> listarFiltradoPorNombre(@RequestParam String nombre) {
+        return servicio.listarFiltradoPorNombre(nombre);
+    }
+
+    // Paginacion
+
+    @GetMapping(params = { "nombre", "page" })
+    public Page<Categoria> findByNombrePaginado(@RequestParam String nombre, Pageable page) {
+        return servicio.findByNombrePaginado(nombre, page);
+    }
+
+    // sort
+    @GetMapping(params = { "sort" })
+    public Iterable<Categoria> listarTodosPaginados(Pageable pagina) {
+        return servicio.listarTodos(pagina);
     }
 
 }

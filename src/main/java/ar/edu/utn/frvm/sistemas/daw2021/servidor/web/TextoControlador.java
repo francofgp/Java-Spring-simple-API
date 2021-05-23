@@ -62,6 +62,17 @@ public class TextoControlador {
 
     // Filtros
 
+    @GetMapping(params = { "nombre" })
+    public Iterable<Texto> listarFiltradoPorNombre(@RequestParam String nombre) {
+        return servicio.listarFiltradoPorNombre(nombre);
+    }
+
+    @GetMapping(params = { "nombre", "categoria" })
+    public Iterable<Texto> listarFiltradoPorNombreCategoriayFechaModificacion(@RequestParam String nombre,
+            @RequestParam(value = "categoria") String c) {
+        return servicio.findByNombreContainingIgnoreCaseAndCategoria_NombreContainingIgnoreCase(nombre, c);
+    }
+
     @GetMapping(params = { "nombre", "categoria", "fecha_modificacion" })
     public Iterable<Texto> listarFiltradoPorNombreCategoriayFechaModificacion(@RequestParam String nombre,
             @RequestParam(value = "categoria") String c,
@@ -71,23 +82,22 @@ public class TextoControlador {
                         nombre, fecha_modificacion, c);
     }
 
-    @GetMapping(params = { "nombre", "categoria", "fecha_modificacion", "page" }) // <----ESE PAGE NO SIRVE PARA NADA
-                                                                                  // PERO SI LO SACO TIRA ERROR ASI QUE
-                                                                                  // LO DEJE.
-    public Iterable<Texto> listarFiltradoPorNombreCategoriaFechaModificacion(@RequestParam String nombre,
-            @RequestParam(value = "categoria") String c,
-            @RequestParam("fecha_modificacion") String fecha_modificacion) {
-        return servicio
-                .findByNombreContainingIgnoreCaseAndFechaModificacionContainingAndCategoria_NombreContainingIgnoreCase(
-                        nombre, fecha_modificacion, c);
-    }
+    /*
+     * @GetMapping(params = { "nombre", "categoria", "fecha_modificacion", "page" })
+     * // <----ESE PAGE NO SIRVE PARA NADA // PERO SI LO SACO TIRA ERROR ASI QUE //
+     * LO DEJE. public Iterable<Texto>
+     * listarFiltradoPorNombreCategoriaFechaModificacion(@RequestParam String
+     * nombre,
+     * 
+     * @RequestParam(value = "categoria") String c,
+     * 
+     * @RequestParam("fecha_modificacion") String fecha_modificacion) { return
+     * servicio
+     * .findByNombreContainingIgnoreCaseAndFechaModificacionContainingAndCategoria_NombreContainingIgnoreCase(
+     * nombre, fecha_modificacion, c); }
+     */
 
-    @GetMapping(params = { "nombre" })
-    public Iterable<Texto> listarFiltradoPorNombre(@RequestParam String nombre) {
-        return servicio.listarFiltradoPorNombre(nombre);
-    }
-
-    // Paguinacion
+    // Paginacion
 
     @GetMapping(params = { "nombre", "page" })
     public Page<Texto> findByNombrePaginado(@RequestParam String nombre, Pageable page) {

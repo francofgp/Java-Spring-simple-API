@@ -3,11 +3,15 @@ package ar.edu.utn.frvm.sistemas.daw2021.servidor.logica;
 import ar.edu.utn.frvm.sistemas.daw2021.servidor.modelo.Idioma;
 import ar.edu.utn.frvm.sistemas.daw2021.servidor.persistencia.IdiomaRepositorio;
 
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+
+import org.springframework.data.domain.Pageable;
 import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,5 +54,15 @@ public class IdiomaServicio {
     public Iterable<Idioma> listarFiltradoPorNombre(String nombre) {
         return repositorio.findByNombreContainingIgnoreCase(nombre);
     }
+
+
+    public Iterable<Idioma> listarTodos(Pageable page) {
+        return repositorio.findAll(page);
+    }
+
+    public Page<Idioma> findByNombrePaginado(String nombre, Pageable page) {
+        return repositorio.findByNombreContainingIgnoreCase(nombre,page);
+    }
+
 
 }

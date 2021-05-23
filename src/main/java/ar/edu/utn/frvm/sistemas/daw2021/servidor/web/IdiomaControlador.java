@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import org.springframework.data.domain.Pageable;
+
+import org.springframework.data.domain.Page;
+
 import ar.edu.utn.frvm.sistemas.daw2021.servidor.logica.IdiomaServicio;
 import ar.edu.utn.frvm.sistemas.daw2021.servidor.modelo.Idioma;
 
@@ -25,11 +29,6 @@ public class IdiomaControlador {
     @GetMapping
     public Iterable<Idioma> listarTodos() {
         return servicio.listarTodos();
-    }
-
-    @GetMapping(params = { "nombre" })
-    public Iterable<Idioma> listarFiltradoPorNombre(@RequestParam String nombre) {
-        return servicio.listarFiltradoPorNombre(nombre);
     }
 
     @GetMapping("/{id}")
@@ -54,6 +53,27 @@ public class IdiomaControlador {
     @DeleteMapping("/{id}")
     public Idioma eliminar(@PathVariable Long id) {
         return servicio.eliminar(id);
+    }
+
+    // filtros
+
+    @GetMapping(params = { "nombre" })
+    public Iterable<Idioma> listarFiltradoPorNombre(@RequestParam String nombre) {
+        return servicio.listarFiltradoPorNombre(nombre);
+    }
+
+    // Paginacion
+
+    @GetMapping(params = { "nombre", "page" })
+    public Page<Idioma> findByNombrePaginado(@RequestParam String nombre, Pageable page) {
+        return servicio.findByNombrePaginado(nombre, page);
+    }
+
+    // sort
+
+    @GetMapping(params = { "sort" })
+    public Iterable<Idioma> listarTodosPaginados(Pageable pagina) {
+        return servicio.listarTodos(pagina);
     }
 
 }

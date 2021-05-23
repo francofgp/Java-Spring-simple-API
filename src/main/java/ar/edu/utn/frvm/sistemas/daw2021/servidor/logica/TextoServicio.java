@@ -132,4 +132,9 @@ public class TextoServicio {
         return repositorio.findAll(page);
     }
 
+    public Iterable<Texto> findByNombreContainingIgnoreCaseAndCategoria_NombreContainingIgnoreCase(String nombre,
+            String c) {
+                return repositorio.findByNombreContainingIgnoreCaseAndCategoria_NombreContainingIgnoreCase(nombre, c);
+    }
+
 }

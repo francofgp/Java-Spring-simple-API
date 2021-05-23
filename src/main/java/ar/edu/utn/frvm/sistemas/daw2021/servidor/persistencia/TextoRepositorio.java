@@ -22,4 +22,7 @@ public interface TextoRepositorio extends PagingAndSortingRepository<Texto, Long
 
         Page<Texto> findByNombreContainingIgnoreCase(String nombre, Pageable page);
 
+        Iterable<Texto> findByNombreContainingIgnoreCaseAndCategoria_NombreContainingIgnoreCase(String nombre,
+                String c);
+
 }

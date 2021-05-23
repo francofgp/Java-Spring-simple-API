@@ -12,6 +12,11 @@ import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
+
 @Service
 public class CategoriaServicio {
     @Autowired
@@ -48,5 +53,21 @@ public class CategoriaServicio {
         repositorio.deleteById(id);
         return instanciaBD.get();
     }
+
+    public Iterable<Categoria> listarFiltradoPorNombre(String nombre) {
+
+        return repositorio.findByNombreContainingIgnoreCase(nombre);
+    }
+
+    public Iterable<Categoria> listarTodos(Pageable page) {
+        return repositorio.findAll(page);
+    }
+
+    public Page<Categoria> findByNombrePaginado(String nombre, Pageable page) {
+        return repositorio.findByNombreContainingIgnoreCase(nombre, page);
+    }
+
+
+
 
 }
