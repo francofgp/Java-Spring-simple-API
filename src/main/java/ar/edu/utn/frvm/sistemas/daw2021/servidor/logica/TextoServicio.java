@@ -1,5 +1,6 @@
 package ar.edu.utn.frvm.sistemas.daw2021.servidor.logica;
 
+import ar.edu.utn.frvm.sistemas.daw2021.servidor.modelo.Idioma;
 import ar.edu.utn.frvm.sistemas.daw2021.servidor.modelo.Texto;
 import ar.edu.utn.frvm.sistemas.daw2021.servidor.persistencia.TextoRepositorio;
 import ar.edu.utn.frvm.sistemas.daw2021.servidor.persistencia.IdiomaRepositorio;
@@ -134,7 +135,11 @@ public class TextoServicio {
 
     public Iterable<Texto> findByNombreContainingIgnoreCaseAndCategoria_NombreContainingIgnoreCase(String nombre,
             String c) {
-                return repositorio.findByNombreContainingIgnoreCaseAndCategoria_NombreContainingIgnoreCase(nombre, c);
+        return repositorio.findByNombreContainingIgnoreCaseAndCategoria_NombreContainingIgnoreCase(nombre, c);
+    }
+
+    public Iterable<Texto> findByIdioma(Idioma idioma) {
+        return repositorio.findByIdioma(idioma);
     }
 
 }

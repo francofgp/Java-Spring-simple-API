@@ -9,12 +9,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Date;
 
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Calendar;
-
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -33,10 +31,9 @@ public class PalabraServicio {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-M-dd");
         String strDate = dateFormat.format(date);
 
-
-        //Date date = new Date();
+        // Date date = new Date();
         d.setFechaCreacion(date);
-        
+
         d.setFechaModificacion(strDate);
 
         return repositorio.save(d);
@@ -122,7 +119,12 @@ public class PalabraServicio {
 
     public Iterable<Palabra> findByPalabraContainingIgnoreCaseAndFechaModificacionContaining(String palabra,
             String fecha_modificacion) {
-        return repositorio.findByPalabraContainingIgnoreCaseAndFechaModificacionContaining(palabra,fecha_modificacion);
+        return repositorio.findByPalabraContainingIgnoreCaseAndFechaModificacionContaining(palabra, fecha_modificacion);
+    }
+
+    public Iterable<Palabra> listarFiltradoPorNivel(int nivel) {
+
+        return repositorio.findByNivel(nivel);
     }
 
 }

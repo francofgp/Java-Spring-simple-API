@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ar.edu.utn.frvm.sistemas.daw2021.servidor.logica.TextoServicio;
+import ar.edu.utn.frvm.sistemas.daw2021.servidor.modelo.Idioma;
 import ar.edu.utn.frvm.sistemas.daw2021.servidor.modelo.Texto;
 
 @RestController
@@ -109,5 +110,10 @@ public class TextoControlador {
     @GetMapping(params = { "sort" })
     public Iterable<Texto> listarTodosPaginados(Pageable pagina) {
         return servicio.listarTodos(pagina);
+    }
+
+    @GetMapping(params = { "idioma" })
+    public Iterable<Texto> listarTodosPaginados(Idioma idioma) {
+        return servicio.findByIdioma(idioma);
     }
 }

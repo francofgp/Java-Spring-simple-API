@@ -17,4 +17,6 @@ public interface PalabraRepositorio extends PagingAndSortingRepository<Palabra, 
 
     Iterable<Palabra> findByPalabraContainingIgnoreCaseAndFechaModificacionContaining(String palabra,
             String fecha_modificacion);
+
+    Iterable<Palabra> findByNivel(int nivel);
 }

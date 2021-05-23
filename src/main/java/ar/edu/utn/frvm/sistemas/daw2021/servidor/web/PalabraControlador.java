@@ -57,6 +57,11 @@ public class PalabraControlador {
 
     // Filtros
 
+    @GetMapping(params = { "nivel" })
+    public Iterable<Palabra> listarFiltradoPorNivel(@RequestParam int nivel) {
+        return servicio.listarFiltradoPorNivel(nivel);
+    }
+
     @GetMapping(params = { "palabra" })
     public Iterable<Palabra> listarFiltradoPorNombre(@RequestParam String palabra) {
         return servicio.listarFiltradoPorNombre(palabra);

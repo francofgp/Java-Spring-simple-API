@@ -2,6 +2,7 @@ package ar.edu.utn.frvm.sistemas.daw2021.servidor.persistencia;
 
 import org.springframework.stereotype.Repository;
 
+import ar.edu.utn.frvm.sistemas.daw2021.servidor.modelo.Idioma;
 import ar.edu.utn.frvm.sistemas.daw2021.servidor.modelo.Texto;
 
 import org.springframework.data.domain.Page;
@@ -23,6 +24,8 @@ public interface TextoRepositorio extends PagingAndSortingRepository<Texto, Long
         Page<Texto> findByNombreContainingIgnoreCase(String nombre, Pageable page);
 
         Iterable<Texto> findByNombreContainingIgnoreCaseAndCategoria_NombreContainingIgnoreCase(String nombre,
-                String c);
+                        String c);
+
+        Iterable<Texto> findByIdioma(Idioma idioma);
 
 }
