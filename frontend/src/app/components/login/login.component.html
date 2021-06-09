@@ -6,38 +6,31 @@
   </head>
 
   <body class="text-center">
-    <main class="form-signin">
-      <form>
-        <h1 class="h3 mb-3 fw-normal a">Login</h1>
+   
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
 
-        <input
-          type="Username"
-          id="inputUsername"
-          class="form-control"
-          placeholder="Username"
-          required
-          autofocus
-        />
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="https://image.freepik.com/vector-gratis/bienvenidos-letras-modernas_136321-864.jpg" id="icon" alt="User Icon" />
+    </div>
 
-        <input
-          type="password"
-          id="inputPassword"
-          class="form-control"
-          placeholder="Password"
-          required
-        />
+    <!-- Login Form -->
+    <form>
+      <input type="text" id="login" class="fadeIn second" name="login" placeholder="Iniciar Sesión">
+      <input type="text" id="password" class="fadeIn third" name="login" placeholder="Contraseña">
+      <input type="submit" class="fadeIn fourth" value="Log In">
+    </form>
 
-        <div class="a" role="toolbar">
-          <div class="btn-group" role="group">
-            <button class="w-100 btn btn-primary" type="submit">
-              Login
-            </button>
-          </div>
-          <div class="btn-group" role="group">
-            <button type="button" class="btn btn-link">Register</button>
-          </div>
-        </div>
-      </form>
-    </main>
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <a class="underlineHover" href="#">Register</a>
+    </div>
+
+  </div>
+</div>
+
+
   </body>
 </html>
