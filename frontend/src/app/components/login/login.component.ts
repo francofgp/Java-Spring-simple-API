@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NgForm } from '@angular/forms';
+import { FormGroup,FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AutenticacionService } from 'src/app/services/autenticacion.service';
+import { PalabraService } from 'src/app/services/palabra.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -8,25 +11,39 @@ import { NgForm } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  
-  loginForm!:FormGroup;
-  /* Tuve que iniciar esto en falso, porque sinó me da error,
-  es como que undefined no funca */
-  enviado:boolean=false;
+  loginForm! : FormGroup;
+  enviado! : boolean;
+
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private servicioAutenticacion: AutenticacionService,
+    private servicioPalabra: PalabraService,
+    private router:Router
   ) { }
-  onSubmit() {
-    console.log(this.loginForm);
-    this.enviado=true;
-}
+
   ngOnInit(): void {
-    this.loginForm=this.formBuilder.group({
-      usuario:['', [Validators.required,Validators.minLength(6)]],
-      password:['',[Validators.required,Validators.minLength(6)]]
+    this.loginForm = this.formBuilder.group({
+      usuario:['',[Validators.required,Validators.minLength(3)]],
+      password:['',[Validators.required,Validators.minLength(3)]]
     });
+  }
 
+  get f(){
+    return this.loginForm.controls;
+  }
 
+  onSubmit(){
+    this.enviado=true;
+    
+    this.servicioAutenticacion.login(this.f.usuario.value, this.f.password.value).subscribe((rta)=>{
+      this.router.navigate(["inicio"]);      
+    },(error)=>{
+      console.log(error);
+    });
+  }
+
+  pedirPalabras(){
+    this.servicioPalabra.pedirPalabras();
   }
 
 }
