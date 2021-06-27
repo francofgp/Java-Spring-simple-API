@@ -1,3 +1,4 @@
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
@@ -7,13 +8,13 @@ import { environment } from 'src/environments/environment';
 })
 export class PalabraService {
 
-  constructor(private http: HttpClient) { }
-
-  pedirPalabras() {
-    this.http.get("localhost:8080/palabras").subscribe((rta) => {
-      console.log(rta);
-    }, (error) => {
-      console.log(error);
-    });
-  }
+	constructor(private http: HttpClient) { }
+	
+	pedirPalabras() {
+		this.http.get(environment.url + 'palabras').subscribe((rta) => {
+			console.log(rta);
+		}, (error) => {
+			console.log(error);
+		});
+	}
 }

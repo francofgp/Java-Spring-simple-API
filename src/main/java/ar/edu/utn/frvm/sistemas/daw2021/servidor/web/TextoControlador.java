@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +23,7 @@ import ar.edu.utn.frvm.sistemas.daw2021.servidor.logica.TextoServicio;
 import ar.edu.utn.frvm.sistemas.daw2021.servidor.modelo.Idioma;
 import ar.edu.utn.frvm.sistemas.daw2021.servidor.modelo.Texto;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/textos") /* MAPEO de URL */
 public class TextoControlador {

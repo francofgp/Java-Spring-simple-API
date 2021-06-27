@@ -1,26 +1,25 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
+import { CanActivate } from '@angular/router'
 import { AutenticacionService } from './autenticacion.service';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root'
 })
-export class AuthguardService implements CanActivate {
+export class AuthGuard implements CanActivate {
 
-  constructor(private servicioAutenticacion : AutenticacionService, private router:Router) { }
-  path!: ActivatedRouteSnapshot[];
-  route!: ActivatedRouteSnapshot;
+	constructor(private router: Router, private servicioAutenticacion: AutenticacionService) { }
+	path!: ActivatedRouteSnapshot[];
+	route!: ActivatedRouteSnapshot;
 
-  canActivate(route: ActivatedRouteSnapshot, state:RouterStateSnapshot){
-    let usuarioLogueado = this.servicioAutenticacion.usuarioLogueado;
-    if(usuarioLogueado && usuarioLogueado.autenthicated){
-      return true;
+	canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+        const currentUser = this.servicioAutenticacion.tokenAutorizado;
+        if (currentUser) {
+            // authorised so return true
+            return true;
+		}
+        // not logged in so redirect to login page with the return url
+        this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
+        return false;
     }
-    //Si no tiene TOKEN obligamos a ir al login
-    this.router.navigate(["login"]);
-    return false;
-  }
 }
-
-
-

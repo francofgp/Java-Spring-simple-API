@@ -1,55 +1,36 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import {map} from "rxjs/operators"
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root'
 })
 export class AutenticacionService {
-  
-  private token!: string;
 
-  constructor(private http: HttpClient) { }
+	private token!: string;
 
-  login(usuario : string, password :string){
-    //Aca tenemos que hacer la peticion HTTP
-    
-    var tokenUsuario = "Basic" +  window.btoa(usuario + ":" + password)
+	constructor(private http: HttpClient) { }
 
-    var opciones = {
-      headers : new HttpHeaders({'Content-Type':  'application/json',
-      authorization : 'Basic' +  window.btoa(usuario + ":" + password) })
-    }
-    console.log(opciones)
-    return this.http.get("http://localhost:8080/",  opciones ).pipe(
-      map((rta)=>{
-        //Se loguea con exito
-        console.log("pipe -> map");
-        this.token=tokenUsuario;
-        
-        localStorage.setItem("usuario", JSON.stringify(rta));
-        //console.log(rta);
-        
-      })
-      
-    );
-    // this.http.get("http://localhost:8080/login", opciones).subscribe((rta) => {
-    //   //se logueo con exito
-    //   this.token=tokenUsuario;
-    // }, (error) => {
-    //   console.log(error);
-    // });
-  }
+	login(usuario: string, pass: string) {
 
-  get tokenAutorizado(){
-    return this.token;
-  }
+		var tokenUsuario = 'Basic ' + window.btoa(usuario + ':' + pass);
 
-  get usuarioLogueado(){
-    return JSON.parse(localStorage.getItem("usuario") || '{}');
-  }
+		var opciones = {
+			headers: new HttpHeaders({ 'Authorization': tokenUsuario })
+		}
 
-  
+		return this.http.get<any>(environment.url + 'login', opciones).pipe(
+			map((rta) => {
+				console.log(rta);
+				this.token = tokenUsuario;
+			})
+		);
+	}
+
+	get tokenAutorizado() {
+		return this.token;
+	}
+
 }
