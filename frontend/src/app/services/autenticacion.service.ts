@@ -14,23 +14,24 @@ export class AutenticacionService {
 	constructor(private http: HttpClient) { }
 
 	login(usuario: string, pass: string) {
-
 		var tokenUsuario = 'Basic ' + window.btoa(usuario + ':' + pass);
-
 		var opciones = {
-			headers: new HttpHeaders({ 'Authorization': tokenUsuario })
+			headers: new HttpHeaders({'Authorization' : tokenUsuario })
 		}
-
-		return this.http.get<any>(environment.url + 'login', opciones).pipe(
+		return this.http.get(environment.url + 'login', opciones).pipe(
 			map((rta) => {
-				console.log(rta);
-				this.token = tokenUsuario;
+				//Se logueo con exito
+				console.log('pipe -> map');
+				// this.token = tokenUsuario;
+				localStorage.setItem('token', tokenUsuario);
+				localStorage.setItem('usuario', JSON.stringify(rta));
 			})
 		);
 	}
-
 	get tokenAutorizado() {
-		return this.token;
+		return localStorage.getItem('token');
 	}
-
+	get usuarioLogueado() {
+		return JSON.parse(localStorage.getItem('usuario'));
+	}
 }

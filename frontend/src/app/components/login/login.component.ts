@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AutenticacionService } from 'src/app/services/autenticacion.service';
-import { PalabraService } from 'src/app/services/palabra.service';
+import { TextoService } from 'src/app/services/texto.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private servicioAutenticacion: AutenticacionService,
-    private servicioPalabra: PalabraService,
+    private servicioTexto: TextoService,
     private router:Router
   ) { }
 
@@ -42,8 +42,9 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  /*
   pedirPalabras(){
     this.servicioPalabra.pedirPalabras();
-  }
+  }*/
 
 }

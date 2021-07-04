@@ -13,6 +13,8 @@ import { InterceptorHttpService } from './services/interceptor-http.service';
 import { appRoutingModule } from './rutas/rutas-routing.module';
 import { InicioComponent } from './inicio/inicio.component';
 import { ContactoComponent } from './contacto/contacto.component';
+import { TextoComponent } from './texto/texto.component';
+import { TextoNuevoComponent } from './texto/texto-nuevo/texto-nuevo.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { ContactoComponent } from './contacto/contacto.component';
     FooterComponent,
     LoginComponent,
     InicioComponent,
-    ContactoComponent
+    ContactoComponent,
+    TextoComponent,
+    TextoNuevoComponent
   ],
   imports: [
     BrowserModule,
