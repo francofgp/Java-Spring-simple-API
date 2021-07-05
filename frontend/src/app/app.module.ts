@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 //import { BodyComponent } from './components/body/body.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InterceptorHttpService } from './services/interceptor-http.service';
 import { appRoutingModule } from './rutas/rutas-routing.module';

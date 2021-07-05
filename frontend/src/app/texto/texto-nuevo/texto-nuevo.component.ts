@@ -23,6 +23,7 @@ export class TextoNuevoComponent implements OnInit {
 	ngOnInit() {
 
 		this.titulo = this.rutaActiva.snapshot.params.id;
+		console.log(this.rutaActiva)
 		this.formulario = this.formBuilder.group({
 			nombre: ['', [Validators.required, Validators.minLength(4)]],
 		});

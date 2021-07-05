@@ -11,7 +11,7 @@ export class TextoService {
 	constructor(private http: HttpClient) { }
 
 	pedirTextos() {
-		return this.http.get(environment.url + 'dominios');
+		return this.http.get(environment.url + 'textos');
 	}
 	
 	pedirTextosFiltradosPorNombre(filtro: string, orden?: string) {

@@ -38,12 +38,12 @@ export class TextoComponent implements OnInit {
 	}
 
   nuevaPalabra() {
-		this.router.navigate(["palabras" , "nuevo"]);
+		this.router.navigate(["texto" , "nuevo"]);
 	}
 
 
 	ver(id: number) {
-		this.router.navigate(["palabras" , id]);
+		this.router.navigate(["texto" , id]);
 		//Router ir a /dominios/:id
 	}
 
