@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class TextoService {
+	
 
 	constructor(private http: HttpClient) { }
 
@@ -31,6 +32,10 @@ export class TextoService {
 
 	get(id: string) {
 		return this.http.get(environment.url + 'textos/' + id);
+	}
+
+	delete(id: number) {
+		return this.http.delete(environment.url + 'textos/' + id);
 	}
 
 	/*

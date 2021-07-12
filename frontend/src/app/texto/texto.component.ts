@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TextoService } from 'src/app/services/texto.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-texto',
@@ -44,6 +45,44 @@ export class TextoComponent implements OnInit {
 
 	ver(id: number) {
 		this.router.navigate(["texto" , id]);
+		//Router ir a /dominios/:id
+	}
+
+	eliminar(id: number) {
+
+
+		Swal.fire({
+			title: 'Esta seguro que desea elimnar este registro?',
+			text: "You won't be able to revert this!",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Si!'
+		}).then((result) => {
+			if (result.value) {
+		this.servicioTextos.delete(id).subscribe((rta) => {
+			this.servicioTextos.pedirTextos().subscribe((rta) => {
+				console.log(rta);
+				this.textos = rta;
+			}, (error) => {
+				console.log(error);
+			});
+			
+		}, (error) => {
+			alert('Error al eliminar');
+		});
+				 
+			}
+		})
+
+
+
+
+		
+
+		
+		//this.router.navigate(["texto" , id]);
 		//Router ir a /dominios/:id
 	}
 

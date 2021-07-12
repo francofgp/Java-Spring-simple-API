@@ -35,6 +35,7 @@
 				<td>{{t.nombre}}</td>
 				<td [ngClass]="{'table-primary' : t.id % 2 === 0}">{{t.fechaCreacion | date : 'dd/MM/yyyy HH:mm'}}</td>
 				<td><button type="button" class="btn btn-primary" (click)="ver(t.id)">Ver</button></td>
+				<td><button type="button" class="btn btn-danger" (click)="eliminar(t.id)">Eliminar</button></td>
 			</tr>
 		</tbody>
 	</table>
