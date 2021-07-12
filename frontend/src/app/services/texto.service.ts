@@ -21,6 +21,18 @@ export class TextoService {
 		return this.http.get(environment.url + 'textos?nombre=' + filtro);
 	}
 
+	guardar(nuevoTexto: any) {
+		return this.http.post(environment.url + 'textos', nuevoTexto);
+	}
+
+	actualizar(texto: any) {
+		return this.http.put(environment.url + 'textos/' + texto.id, texto);
+	}
+
+	get(id: string) {
+		return this.http.get(environment.url + 'textos/' + id);
+	}
+
 	/*
 	pedirTextos() {
 		this.http.get(environment.url + 'textos').subscribe((rta) => {
