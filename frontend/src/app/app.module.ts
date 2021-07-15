@@ -8,7 +8,7 @@ import { HeaderComponent } from './components/header/header.component';
 //import { BodyComponent } from './components/body/body.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './login/login.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InterceptorHttpService } from './services/interceptor-http.service';
 import { appRoutingModule } from './rutas/rutas-routing.module';
 import { InicioComponent } from './inicio/inicio.component';
@@ -37,6 +37,7 @@ import { CategoriaNuevoComponent } from './categoria/categoria-nuevo/categoria-n
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    FormsModule ,
     appRoutingModule
   ],
   providers: [
