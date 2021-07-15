@@ -6,6 +6,8 @@ import { InicioComponent } from '../inicio/inicio.component';
 import { AuthGuard } from '../services/authguard.service';
 import { TextoNuevoComponent } from '../texto/texto-nuevo/texto-nuevo.component';
 import { TextoComponent } from '../texto/texto.component';
+import { CategoriaComponent } from '../categoria/categoria.component';
+import { CategoriaNuevoComponent } from '../categoria/categoria-nuevo/categoria-nuevo.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -13,6 +15,9 @@ const routes: Routes = [
   { path: 'contacto', component: ContactoComponent, canActivate: [AuthGuard] },
   { path: 'texto', component: TextoComponent, canActivate: [AuthGuard] },
   { path: 'texto/:id', component: TextoNuevoComponent, canActivate: [AuthGuard] },
+  { path: 'categoria', component: CategoriaComponent, canActivate: [AuthGuard] },
+  { path: 'categoria/:id', component: CategoriaNuevoComponent, canActivate: [AuthGuard] },
+
   { path: '**', redirectTo: 'inicio' },
 ];
 

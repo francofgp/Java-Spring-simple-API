@@ -1,7 +1,7 @@
 <app-header></app-header>
 <div class="container">
-	<h1>Dominios</h1>
-	<form [formGroup]="filtrarTextoForm">
+	<h1>Categorias</h1>
+	<form [formGroup]="filtrarCategoriaForm">
 		<div class="input-group mb-3">
 			<input type="text" class="form-control" placeholder="Ingrese su búsqueda..."  (keyup)="keyPress($event)"
 				formControlName="filtro">
@@ -14,8 +14,7 @@
 		<thead>
 			<tr>
 				<th scope="col">#</th>
-				<th scope="col" (click)="ordenar('nombre')">Nombre Texto <i class="fa" [ngClass]="{'fa-chevron-down' : orderNombreDesc !== undefined && orderNombreDesc,'fa-chevron-up' : orderNombreDesc !== undefined && !orderNombreDesc }"></i> </th>
-				<th scope="col">Fecha Creación</th>
+				<th scope="col" (click)="ordenar('nombre')">Nombre Categoria <i class="fa" [ngClass]="{'fa-chevron-down' : orderNombreDesc !== undefined && orderNombreDesc,'fa-chevron-up' : orderNombreDesc !== undefined && !orderNombreDesc }"></i> </th>
 				<th scope="col">Acciones</th>
 			</tr>
 
@@ -30,12 +29,11 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr *ngFor="let t of textos">
+			<tr *ngFor="let t of categorias">
 				<th scope="row">{{t.id}}</th>
 				<td>{{t.nombre}}</td>
-				<td [ngClass]="{'table-primary' : t.id % 2 === 0}">{{t.fechaCreacion | date : 'dd/MM/yyyy HH:mm'}}</td>
-				<td><button type="button" class="btn btn-primary" (click)="ver(t.id)">Ver</button> -
-				<button type="button" class="btn btn-danger" (click)="eliminar(t.id)">Eliminar</button></td>
+				<td><button type="button" class="btn btn-primary" (click)="ver(t.id)">Ver</button>  -
+                    <button type="button" class="btn btn-danger" (click)="eliminar(t.id)">Eliminar</button></td>
 			</tr>
 		</tbody>
 	</table>

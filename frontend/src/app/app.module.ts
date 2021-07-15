@@ -15,6 +15,8 @@ import { InicioComponent } from './inicio/inicio.component';
 import { ContactoComponent } from './contacto/contacto.component';
 import { TextoComponent } from './texto/texto.component';
 import { TextoNuevoComponent } from './texto/texto-nuevo/texto-nuevo.component';
+import { CategoriaComponent } from './categoria/categoria.component';
+import { CategoriaNuevoComponent } from './categoria/categoria-nuevo/categoria-nuevo.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { TextoNuevoComponent } from './texto/texto-nuevo/texto-nuevo.component';
     InicioComponent,
     ContactoComponent,
     TextoComponent,
-    TextoNuevoComponent
+    TextoNuevoComponent,
+    CategoriaComponent,
+    CategoriaNuevoComponent
   ],
   imports: [
     BrowserModule,
