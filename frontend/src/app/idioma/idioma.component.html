@@ -1,7 +1,7 @@
 <app-header></app-header>
 <div class="container">
-	<h1>Categorias</h1>
-	<form [formGroup]="filtrarCategoriaForm">
+	<h1>Idiomas</h1>
+	<form [formGroup]="filtrarIdiomaForm">
 		<div class="input-group mb-3">
 			<input type="text" class="form-control" placeholder="Ingrese su búsqueda..."  (keyup)="keyPress($event)"
 				formControlName="filtro">
@@ -14,14 +14,14 @@
 		<thead>
 			<tr>
 				<th scope="col">#</th>
-				<th scope="col" (click)="ordenar('nombre')">Nombre Categoria <i class="fa" [ngClass]="{'fa-chevron-down' : orderNombreDesc !== undefined && orderNombreDesc,'fa-chevron-up' : orderNombreDesc !== undefined && !orderNombreDesc }"></i> </th>
+				<th scope="col" (click)="ordenar('nombre')">Nombre Idioma <i class="fa" [ngClass]="{'fa-chevron-down' : orderNombreDesc !== undefined && orderNombreDesc,'fa-chevron-up' : orderNombreDesc !== undefined && !orderNombreDesc }"></i> </th>
 				<th scope="col">Acciones</th>
 			</tr>
 
-		
+			
 		</thead>
 		<tbody>
-			<tr *ngFor="let t of categorias">
+			<tr *ngFor="let t of idiomas">
 				<th scope="row">{{t.id}}</th>
 				<td>{{t.nombre}}</td>
 				<td><button type="button" class="btn btn-primary" (click)="ver(t.id)">Ver</button>  -
@@ -29,6 +29,7 @@
 			</tr>
 		</tbody>
 	</table>
+
 	<br>
 	<br>
 	<br>
@@ -38,6 +39,8 @@
 	<br>
 	<br>
 	<br>
+
 </div>
+
 
 <app-footer></app-footer>

@@ -2,25 +2,25 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { CategoriaService } from '../services/categoria.service';
+import { IdiomaService } from '../services/idioma.service';
 
 @Component({
-  selector: 'app-categoria',
-  templateUrl: './categoria.component.html',
-  styleUrls: ['./categoria.component.css']
+  selector: 'app-idioma',
+  templateUrl: './idioma.component.html',
+  styleUrls: ['./idioma.component.css']
 })
-export class CategoriaComponent implements OnInit {
+export class IdiomaComponent implements OnInit {
 
-  filtrarCategoriaForm!: FormGroup;
-	categorias!: any;
+  filtrarIdiomaForm!: FormGroup;
+	idiomas!: any;
 	orderNombreDesc!: boolean;
 
-  constructor(private servicioCategorias: CategoriaService,
+  constructor(private servicioIdiomas: IdiomaService,
 		private formBuilder: FormBuilder,
 		private router : Router) { }
 
   ngOnInit() {
-    this.filtrarCategoriaForm = this.formBuilder.group({
+    this.filtrarIdiomaForm = this.formBuilder.group({
 			filtro: ['']
 		});
 
@@ -30,21 +30,21 @@ export class CategoriaComponent implements OnInit {
 
 
   cargarDatos() {
-		this.servicioCategorias.pedirCategoria().subscribe((rta) => {
+		this.servicioIdiomas.pedirIdioma().subscribe((rta) => {
 			console.log(rta);
-			this.categorias = rta;
+			this.idiomas = rta;
 		}, (error) => {
 			console.log(error);
 		});
 	}
 
   nuevaPalabra() {
-		this.router.navigate(["categoria" , "nuevo"]);
+		this.router.navigate(["idioma" , "nuevo"]);
 	}
 
 
 	ver(id: number) {
-		this.router.navigate(["categoria" , id]);
+		this.router.navigate(["idioma" , id]);
 		//Router ir a /dominios/:id
 	}
 
@@ -61,21 +61,21 @@ export class CategoriaComponent implements OnInit {
 			confirmButtonText: 'Si!'
 		}).then((result) => {
 			if (result.value) {
-		this.servicioCategorias.delete(id).subscribe((rta) => {
-			this.servicioCategorias.pedirCategoria().subscribe((rta) => {
+		this.servicioIdiomas.delete(id).subscribe((rta) => {
+			this.servicioIdiomas.pedirIdioma().subscribe((rta) => {
 				console.log(rta);
-				this.categorias = rta;
+				this.idiomas = rta;
 			}, (error) => {
 				console.log(error);
 			});
 			
 		}, (error) => {
 			Swal.fire({
-				icon: 'error',
-				title: 'Oops...',
-				text: 'Error al eliminar este registro!',
-				footer: 'Esto se debe a que este registro está vinculado con otro'
-			  })
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Error al eliminar este registro!',
+        footer: 'Esto se debe a que este registro está vinculado con otro'
+      })
 		});
 				 
 			}
@@ -92,7 +92,7 @@ export class CategoriaComponent implements OnInit {
 	}
 
 	get f() {
-		return this.filtrarCategoriaForm.controls;
+		return this.filtrarIdiomaForm.controls;
 	}
 
 	filtrar() {
@@ -100,12 +100,12 @@ export class CategoriaComponent implements OnInit {
 	}
 
 	filtrarImpl(valor: string, orden? : string) {
-		this.servicioCategorias.pedirCategoriaFiltradosPorNombre(valor, orden).subscribe((rta: any) => {
+		this.servicioIdiomas.pedirIdiomaFiltradosPorNombre(valor, orden).subscribe((rta: any) => {
 			console.log(rta);
 			if (rta && rta.content) {
-				this.categorias = rta.content;	
+				this.idiomas = rta.content;	
 			} else {
-				this.categorias = rta;
+				this.idiomas = rta;
 			}
 		}, (error) => {
 			console.log(error);

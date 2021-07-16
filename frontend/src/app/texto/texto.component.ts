@@ -14,15 +14,21 @@ export class TextoComponent implements OnInit {
   filtrarTextoForm!: FormGroup;
 	textos!: any;
 	orderNombreDesc!: boolean;
+	today: Date;
 
   constructor(private servicioTextos: TextoService,
 		private formBuilder: FormBuilder,
-		private router : Router) { }
+		private router : Router) {
+			this.today =new Date();
+
+		 }
 
   ngOnInit() {
     this.filtrarTextoForm = this.formBuilder.group({
-			filtro: ['']
+			filtro: [''],
+			filtrlDate:['']
 		});
+	
 
 		// Debo pedir los dominios al backend
 		this.cargarDatos();
@@ -125,6 +131,34 @@ export class TextoComponent implements OnInit {
 			this.filtrarImpl(this.f.filtro.value, this.orderNombreDesc ? 'nombre,desc' : 'nombre,asc' );
 			
 		}
+		if (estrategia === 'date') {
+			console.log("estoy aca")
+			console.log(this.f.filtroDate)
+
+			/* this.orderNombreDesc = !this.orderNombreDesc;
+			//llamar al metodo de filtrar 
+			this.filtrarImpl(this.f.filtro.value, this.orderNombreDesc ? 'nombre,desc' : 'nombre,asc' ); */
+			
+		}
+	}
+
+	//Con esto consigo la fecha del Input Date, faltaria llamar al backm para que en funcion de la fecha me filtre
+	selectDate(){
+		console.log(this.today)
+		this.ordenar("date")
+	}
+
+	filtrarTextoPorFecha(valor: string, orden? : string) {
+		this.servicioTextos.pedirTextosFiltradosPorNombre(valor, orden).subscribe((rta: any) => {
+			console.log(rta);
+			if (rta && rta.content) {
+				this.textos = rta.content;	
+			} else {
+				this.textos = rta;
+			}
+		}, (error) => {
+			console.log(error);
+		});
 	}
 
 }

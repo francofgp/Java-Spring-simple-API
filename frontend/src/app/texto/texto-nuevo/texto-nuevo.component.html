@@ -5,27 +5,53 @@
     <div class="row">
         <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
 			<div class="form-group">
-				<label for="nombre">Nombre</label>
+				<label for="nombre">Título</label>
 				<input type="text" formControlName="nombre" class="form-control"
 					[ngClass]="{ 'is-invalid' : enviado && formulario.controls.nombre.errors }">
+
+
 				<div *ngIf="enviado && formulario.controls.nombre.errors" class="invalid-feedback">
-					<div *ngIf="formulario.controls.nombre.errors.required">Debe ingresar su nombre de usuario</div>
+					<div *ngIf="formulario.controls.nombre.errors.required">Debe ingresar un título de al menos 4 caracteres</div>
 				</div>
 			</div>
+
+			<div class="form-group">
+				<label for="parrafo">Parrafo</label>
+				<input type="text" formControlName="parrafo" class="form-control"
+					[ngClass]="{ 'is-invalid' : enviado && formulario.controls.parrafo.errors }">
+
+
+				<div *ngIf="enviado && formulario.controls.parrafo.errors" class="invalid-feedback">
+					<div *ngIf="formulario.controls.parrafo.errors.required">Debe ingresar un párrafo de al menos 10 caracteres</div>
+				</div>
+			</div>
+
+
 			<div class="form-group">
 
+				<h4>Seleccione un idioma </h4>
 
-				<h4>Selecciones una Cateogria </h4>
+				<select  name="my-select-idioma" [(ngModel)]="mySelectIdioma" (change)="selectChangeIdioma()" [ngModelOptions]="{standalone: true}">
+					<option [value]="item.id" *ngFor="let item of idiomas">
+						{{item.nombre}}
+					</option>
+				</select>
+				<h4>Idioma seleccionado</h4>
+				<div>
+					Seleccionaste: {{nombreIdioma}}
+				</div>
 
-				<select  name="my-select" [(ngModel)]="mySelect" (change)="selectChange()" [ngModelOptions]="{standalone: true}">
+
+
+
+				<h4>Seleccione una Cateogria </h4>
+
+				<select  name="my-select" [(ngModel)]="mySelect" (change)="selectChangeCategoria()" [ngModelOptions]="{standalone: true}">
 					<option [value]="item.id" *ngFor="let item of categorias">
 						{{item.nombre}}
 					</option>
 				</select>
-
-
 				<h4>Categoria seleccionada</h4>
-
 				<div>
 					Seleccionaste: {{nombreCategoria}}
 				</div>
@@ -39,3 +65,5 @@
 		</form>
     </div>
 </div>
+
+<app-footer></app-footer>

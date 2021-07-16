@@ -17,6 +17,8 @@ import { TextoComponent } from './texto/texto.component';
 import { TextoNuevoComponent } from './texto/texto-nuevo/texto-nuevo.component';
 import { CategoriaComponent } from './categoria/categoria.component';
 import { CategoriaNuevoComponent } from './categoria/categoria-nuevo/categoria-nuevo.component';
+import { IdiomaComponent } from './idioma/idioma.component';
+import { IdiomaNuevoComponent } from './idioma/idioma-nuevo/idioma-nuevo.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { CategoriaNuevoComponent } from './categoria/categoria-nuevo/categoria-n
     TextoComponent,
     TextoNuevoComponent,
     CategoriaComponent,
-    CategoriaNuevoComponent
+    CategoriaNuevoComponent,
+    IdiomaComponent,
+    IdiomaNuevoComponent
   ],
   imports: [
     BrowserModule,

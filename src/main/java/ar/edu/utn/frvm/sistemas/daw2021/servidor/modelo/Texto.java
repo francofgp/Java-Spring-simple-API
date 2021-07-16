@@ -22,6 +22,7 @@ public class Texto {
     private Long id;
     private String nombre;
 
+    private String parrafo;
     private Date fechaCreacion;
     private String fechaModificacion;
 

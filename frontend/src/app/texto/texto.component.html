@@ -1,6 +1,6 @@
 <app-header></app-header>
 <div class="container">
-	<h1>Dominios</h1>
+	<h1>Mis textos</h1>
 	<form [formGroup]="filtrarTextoForm">
 		<div class="input-group mb-3">
 			<input type="text" class="form-control" placeholder="Ingrese su búsqueda..."  (keyup)="keyPress($event)"
@@ -10,8 +10,8 @@
 			<button class="btn btn-success" type="button" (click)="nuevaPalabra()" id="button-addon1">Nuevo</button>
 		</div>
 	</form>
-	<table class="table table-hover">
-		<thead>
+	<table class="table table-hover table-white ">
+		<thead >
 			<tr>
 				<th scope="col">#</th>
 				<th scope="col" (click)="ordenar('nombre')">Nombre Texto <i class="fa" [ngClass]="{'fa-chevron-down' : orderNombreDesc !== undefined && orderNombreDesc,'fa-chevron-up' : orderNombreDesc !== undefined && !orderNombreDesc }"></i> </th>
@@ -23,9 +23,9 @@
 				<th scope="col"></th>
 				<th scope="col"><input class="form-control"></th>
 				<th scope="col">
-					<input class="form-control" type="date">
-					<input class="form-control" type="date">
-				</th>
+					<input class="form-control" type="date" [(ngModel)]="today " (change)="selectDate()" [ngModelOptions]="{standalone: true}">
+<!-- 					<input class="form-control" type="date"> -->
+ 				</th>
 				<th scope="col"></th>
 			</tr>
 		</thead>
@@ -40,3 +40,5 @@
 		</tbody>
 	</table>
 </div>
+
+<app-footer></app-footer>
