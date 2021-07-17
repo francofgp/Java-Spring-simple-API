@@ -28,4 +28,9 @@ public interface TextoRepositorio extends PagingAndSortingRepository<Texto, Long
 
         Iterable<Texto> findByIdioma(Idioma idioma);
 
+        Iterable<Texto> findByNombreContainingIgnoreCaseAndFechaModificacionContaining(String nombre,
+                        String fecha_modificacion);
+
+        Iterable<Texto> findByNombreContainingIgnoreCaseAndIdioma_NombreContainingIgnoreCase(String nombre, String i);
+
 }

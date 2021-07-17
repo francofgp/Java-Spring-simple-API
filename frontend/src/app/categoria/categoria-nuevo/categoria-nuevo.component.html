@@ -10,9 +10,10 @@
 				<input type="text" formControlName="nombre" class="form-control"
 					[ngClass]="{ 'is-invalid' : enviado && formulario.controls.nombre.errors }">
 				<div *ngIf="enviado && formulario.controls.nombre.errors" class="invalid-feedback">
-					<div *ngIf="formulario.controls.nombre.errors.required">Debe ingresar su nombre de usuario</div>
+					<div *ngIf="formulario.controls.nombre.errors.required">Debe ingresar una categoria de al menos 4 caracteres</div>
 				</div>
 			</div>
+            <br>
 			<div class="form-group">
 				<button class="btn btn-success">
 					Guardar
@@ -33,3 +34,5 @@
     <br>
     <br>
 </div>
+
+<app-footer></app-footer>

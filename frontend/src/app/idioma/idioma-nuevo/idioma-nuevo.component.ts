@@ -51,44 +51,47 @@ export class IdiomaNuevoComponent implements OnInit {
 	}
 
 	onSubmit() {
-
-		Swal.fire({
-			title: 'Esta seguro que desea continuar?',
-			text: "You won't be able to revert this!",
-			icon: 'warning',
-			showCancelButton: true,
-			confirmButtonColor: '#3085d6',
-			cancelButtonColor: '#d33',
-			confirmButtonText: 'Si, claro!'
-		}).then((result) => {
-			if (result.value) {
-				//Me fijo en el modo de pantalla
-				
-				if (this.modoNuevo) {
-					var nuevoIdioma: any;
-					nuevoIdioma = {};
-					nuevoIdioma.nombre = this.f.nombre.value;
-					console.log(nuevoIdioma)
-					this.servicioIdioma.guardar(nuevoIdioma).subscribe((rta) => {
-						this.router.navigate(["idioma"]);
-					}, (error) => {
-						alert('Error al cargar');
-					});
-				} else {
-					//Actualizo el modelo de acuerdo a los valores de los input del formulario
-					this.idioma.nombre = this.f.nombre.value;
+		this.enviado=true;
+		if(this.f.nombre.value.length >4){
+			Swal.fire({
+				title: 'Esta seguro que desea continuar?',
+				text: "",
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Si, claro!'
+			}).then((result) => {
+				if (result.value) {
+					//Me fijo en el modo de pantalla
 					
-					this.servicioIdioma.actualizar(this.idioma).subscribe((rta) => {
-						Swal.fire({ icon: 'success', title: 'Exito', allowOutsideClick: false, text: 'Texto' });
-						this.router.navigate(["idioma"]);
-					}, (error) => {
-						console.error(error);
-						Swal.fire({ icon: 'error', title: 'Error!!', allowOutsideClick: false, text: error.message });
-					});
+					if (this.modoNuevo) {
+						var nuevoIdioma: any;
+						nuevoIdioma = {};
+						nuevoIdioma.nombre = this.f.nombre.value;
+						console.log(nuevoIdioma)
+						this.servicioIdioma.guardar(nuevoIdioma).subscribe((rta) => {
+							this.router.navigate(["idioma"]);
+						}, (error) => {
+							alert('Error al cargar');
+						});
+					} else {
+						//Actualizo el modelo de acuerdo a los valores de los input del formulario
+						this.idioma.nombre = this.f.nombre.value;
+						
+						this.servicioIdioma.actualizar(this.idioma).subscribe((rta) => {
+							Swal.fire({ icon: 'success', title: 'Exito', allowOutsideClick: false, text: 'Texto' });
+							this.router.navigate(["idioma"]);
+						}, (error) => {
+							console.error(error);
+							Swal.fire({ icon: 'error', title: 'Error!!', allowOutsideClick: false, text: error.message });
+						});
+					}
 				}
-			}
-		})
-
+			})
+	
+		}
+		
 
 
 

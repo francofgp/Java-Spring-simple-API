@@ -76,6 +76,12 @@ public class TextoControlador {
         return servicio.findByNombreContainingIgnoreCaseAndCategoria_NombreContainingIgnoreCase(nombre, c);
     }
 
+    @GetMapping(params = { "nombre", "idioma" })
+    public Iterable<Texto> listarFiltradoPorNombreIdioma(@RequestParam String nombre,
+            @RequestParam(value = "idioma") String i) {
+        return servicio.findByNombreEIdioma(nombre, i);
+    }
+
     @GetMapping(params = { "nombre", "categoria", "fecha_modificacion" })
     public Iterable<Texto> listarFiltradoPorNombreCategoriayFechaModificacion(@RequestParam String nombre,
             @RequestParam(value = "categoria") String c,
@@ -83,6 +89,13 @@ public class TextoControlador {
         return servicio
                 .findByNombreContainingIgnoreCaseAndFechaModificacionContainingAndCategoria_NombreContainingIgnoreCase(
                         nombre, fecha_modificacion, c);
+    }
+
+    @GetMapping(params = { "nombre", "fecha_modificacion" })
+    public Iterable<Texto> listarFiltradoPorNombreyFechaModificacion(@RequestParam String nombre,
+
+            @RequestParam("fecha_modificacion") String fecha_modificacion) {
+        return servicio.listarFiltradorPorNombreYFechaModificacion(nombre, fecha_modificacion);
     }
 
     /*

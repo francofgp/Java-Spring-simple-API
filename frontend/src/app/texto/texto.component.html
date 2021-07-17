@@ -15,30 +15,49 @@
 			<tr>
 				<th scope="col">#</th>
 				<th scope="col" (click)="ordenar('nombre')">Nombre Texto <i class="fa" [ngClass]="{'fa-chevron-down' : orderNombreDesc !== undefined && orderNombreDesc,'fa-chevron-up' : orderNombreDesc !== undefined && !orderNombreDesc }"></i> </th>
-				<th scope="col">Fecha Creación</th>
+				<th scope="col">Fecha Modificacion</th>
+				<th scope="col">Categoria</th>
+				<th scope="col">Idiomas</th>
+
 				<th scope="col">Acciones</th>
 			</tr>
 
 			<tr>
 				<th scope="col"></th>
-				<th scope="col"><input class="form-control"></th>
+				<th scope="col"><input type="hidden" class="form-control"></th>
 				<th scope="col">
+					
 					<input class="form-control" type="date" [(ngModel)]="today " (change)="selectDate()" [ngModelOptions]="{standalone: true}">
 <!-- 					<input class="form-control" type="date"> -->
  				</th>
-				<th scope="col"></th>
+				<th scope="col"><select   class="form-control" name="my-select" [(ngModel)]="mySelect" (change)="selectChangeCategoria()" [ngModelOptions]="{standalone: true}">
+					<option [value]="item.id" *ngFor="let item of categorias">
+						{{item.nombre}}
+					</option>
+				</select></th>
+
+				<th><select  name="my-select-idioma"  class="form-control" [(ngModel)]="mySelectIdioma" (change)="selectChangeIdioma()" [ngModelOptions]="{standalone: true}">
+					<option [value]="item.id" *ngFor="let item of idiomas">
+						{{item.nombre}}
+					</option>
+				</select>
+			</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr *ngFor="let t of textos">
 				<th scope="row">{{t.id}}</th>
 				<td>{{t.nombre}}</td>
-				<td [ngClass]="{'table-primary' : t.id % 2 === 0}">{{t.fechaCreacion | date : 'dd/MM/yyyy HH:mm'}}</td>
+				<td [ngClass]="{'table-primary' : t.id % 2 === 0}">{{t.fechaModificacion | date : 'dd/MM/yyyy'}}</td>
+				<td>{{t.categoria!==null?t.categoria.nombre:''}}</td>
+				<td>{{t.idioma!==null?t.idioma.nombre:''}}</td>
 				<td><button type="button" class="btn btn-primary" (click)="ver(t.id)">Ver</button> -
 				<button type="button" class="btn btn-danger" (click)="eliminar(t.id)">Eliminar</button></td>
 			</tr>
 		</tbody>
 	</table>
+	<br>
+	<br>
 </div>
 
 <app-footer></app-footer>

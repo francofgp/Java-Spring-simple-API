@@ -55,26 +55,30 @@ body, html {
 
 <!-- Navbar (sit on top) -->
 
-<div class="container container-fluid">
-
-<div class="w3-top">
-  <div class="w3-bar" id="myNavbar">
-    <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
-      <i class="fa fa-bars"></i>
-    </a>
-    <button  (click)="verInicio()" class="w3-bar-item w3-button">Inicio</button>
-    <button  (click)="verTextos()" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-book"></i> Mis Textos</button>
-    <button  (click)="verCategorias()" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-server  "></i> Categorias</button>
-    <button  (click)="verIdiomas()" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-language"></i> Idiomas</button>
-    <button  class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red">
-      <i class="fa fa-search"></i>
-    </button>
-  </div>
 
 
-</div>
+<nav navbar navbar-default navbar-fixed-top class="tableFixHead">
+  <div class="container container-fluid">
 
-</div>
+    <div class="w3-top">
+      <div class="w3-bar" id="myNavbar">
+        <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+          <i class="fa fa-bars"></i>
+        </a>
+        <button  (click)="verInicio()" class="nav navbar-nav w3-bar-item w3-button">Inicio</button>
+        <button  (click)="verTextos()" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-book"></i> Mis Textos</button>
+        <button  (click)="verCategorias()" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-server  "></i> Categorias</button>
+        <button  (click)="verIdiomas()" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-language"></i> Idiomas</button>
+        <button  class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red">
+          <i class="fa fa-search"></i>
+        </button>
+      </div>
+    
+    </div>
+    </div>
+
+</nav>
+
 
 <br>
 <br>

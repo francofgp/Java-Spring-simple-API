@@ -120,6 +120,10 @@ public class TextoServicio {
                         nombre, fecha_modificacion, c);
     }
 
+    public Iterable<Texto> listarFiltradorPorNombreYFechaModificacion(String nombre, String fecha_modificacion) {
+        return repositorio.findByNombreContainingIgnoreCaseAndFechaModificacionContaining(nombre, fecha_modificacion);
+    }
+
     public Iterable<Texto> listarFiltradoPorNombre(String nombre) {
 
         return repositorio.findByNombreContainingIgnoreCase(nombre);
@@ -136,6 +140,10 @@ public class TextoServicio {
     public Iterable<Texto> findByNombreContainingIgnoreCaseAndCategoria_NombreContainingIgnoreCase(String nombre,
             String c) {
         return repositorio.findByNombreContainingIgnoreCaseAndCategoria_NombreContainingIgnoreCase(nombre, c);
+    }
+
+    public Iterable<Texto> findByNombreEIdioma(String nombre, String i) {
+        return repositorio.findByNombreContainingIgnoreCaseAndIdioma_NombreContainingIgnoreCase(nombre, i);
     }
 
     public Iterable<Texto> findByIdioma(Idioma idioma) {

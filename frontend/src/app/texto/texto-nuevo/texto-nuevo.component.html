@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div class="container">
 
     <h4 class="mb-4 text-muted">{{titulo}}</h4>
@@ -26,17 +27,38 @@
 				</div>
 			</div>
 
+			<div class="form-group">
+				<label for="youtubeURL">URL de YouTube</label>
+				<input type="youtubeURL" formControlName="youtubeURL" class="form-control"
+					[ngClass]="{ 'is-invalid' : enviado && booleanURL }">
+
+					<div class="invalid-feedback">{{invalidaURL}}</div>
+				
+
+				<iframe [src]='URLEmbebida' frameborder="0" allowfullscreen></iframe>
+
+				<div>
+					
+	  
+
+				</div>
+				
+
+				 
+			</div>
+
 
 			<div class="form-group">
 
+				
+
 				<h4>Seleccione un idioma </h4>
 
-				<select  name="my-select-idioma" [(ngModel)]="mySelectIdioma" (change)="selectChangeIdioma()" [ngModelOptions]="{standalone: true}">
+				<select  for="youtubeVideo" name="my-select-idioma" [(ngModel)]="mySelectIdioma" (change)="selectChangeIdioma()" [ngModelOptions]="{standalone: true}">
 					<option [value]="item.id" *ngFor="let item of idiomas">
 						{{item.nombre}}
 					</option>
 				</select>
-				<h4>Idioma seleccionado</h4>
 				<div>
 					Seleccionaste: {{nombreIdioma}}
 				</div>
@@ -51,7 +73,6 @@
 						{{item.nombre}}
 					</option>
 				</select>
-				<h4>Categoria seleccionada</h4>
 				<div>
 					Seleccionaste: {{nombreCategoria}}
 				</div>
@@ -64,6 +85,7 @@
 			</div>
 		</form>
     </div>
+	<br>
 </div>
 
 <app-footer></app-footer>

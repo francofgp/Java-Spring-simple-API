@@ -26,6 +26,8 @@ public class Texto {
     private Date fechaCreacion;
     private String fechaModificacion;
 
+    private String youtubeURL;
+
     @ManyToOne
     private Categoria categoria;
 

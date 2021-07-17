@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class TextoService {
 	
+	
 
 	constructor(private http: HttpClient) { }
 
@@ -20,6 +21,22 @@ export class TextoService {
 			return this.http.get(environment.url + 'textos?nombre=' + filtro +'&page=0' + '&sort=' + orden);
 		}
 		return this.http.get(environment.url + 'textos?nombre=' + filtro);
+	}
+	pedirTextosFiltradosPorNombreYFechaModificacion(valor: string,fechaModificacion?:Date) {
+		
+		return this.http.get(environment.url + 'textos?nombre=' + valor + '&fecha_modificacion='+fechaModificacion.toString().replace(/-0+/g, '-'));
+		
+	}
+
+
+	pedirTextosFiltradosPorNombreYCategoria(valor: string, nombreCategoria: string) {
+		return this.http.get(environment.url + 'textos?nombre=' + valor + '&categoria='+nombreCategoria);
+
+	}
+	
+	pedirTextosFiltradosPorNombreEIdioma(valor: string, nombreIdioma: string) {
+		return this.http.get(environment.url + 'textos?nombre=' + valor + '&idioma='+nombreIdioma);
+
 	}
 
 	guardar(nuevoTexto: any) {
