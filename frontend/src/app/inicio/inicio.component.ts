@@ -23,5 +23,8 @@ export class InicioComponent implements OnInit {
   verIdiomas() {
 		this.router.navigate(["idioma" ]);
 	}
+  verLogIn() {
+		this.router.navigate(["login" ]);
+	}
 
 }
